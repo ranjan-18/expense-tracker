@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page"> 
+    <div class="set">
+        <div class="budget">
+            <h1 class="heading">Budget</h1>
+            <input id="budget" class="input" type="number" placeholder="Set Budget">
+            <button onclick="budgetSet()">Set Budget</button>
+            </div>
+            <div class="expenses">
+                <h1 class="heading">Expenses</h1>
+                <input class="input" id="productTitle" type="text" placeholder="Enter the title of product">
+                <input class="input" id="productCost" type="number" placeholder="Enter the cost of product">
+                <button onclick="expenseSet()">Check Amount</button>  
+            </div>
+    </div>
+   
+    <div class="record">
+        <ul>
+            <li>Total Budget <p id="tb">0</p></li>
+            <li>Expenses <p id="ex">0</p></li>
+            <li>Amount <p id="amt">0</p></li>
+        </ul>
+    </div>
+
+    <div class="list">
+        <h1>Expense List</h1>
+        <div class="expense-table">
+            <div class="expense-header">
+                <div>Item</div>
+                <div>Cost</div>
+                <div>Action</div>
+            </div>
+            <div class="expense-list">
+                <!-- Dynamic expense items will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        
+    </div>
+    </div>
+</div>
+
+  <script src="script.js"></script>  
+</body>
+</html>
