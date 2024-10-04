@@ -3,9 +3,8 @@ displayItems();
 
 function budgetSet() {
     let totalBalance = parseFloat(document.getElementById('budget').value) || 0;
-    let tb = document.getElementById('tb');
-    tb.innerHTML = totalBalance;
-    return totalBalance; // Return the budget for further use
+    document.getElementById('tb').innerHTML = totalBalance;
+    return totalBalance;
 }
 
 function expenseSet() {
@@ -37,24 +36,6 @@ function displayItems() {
     let containerElement = document.querySelector('.expense-list');
     containerElement.innerHTML = '';  // Clear the current list before re-rendering
 
-    // Rebuild the list with updated data
-    for (let i = 0; i < expenseList.length; i++) {
-        let { item, cost } = expenseList[i];
-
-        containerElement.innerHTML += `
-            <tr>
-                <td>${item}</td>
-                <td>${cost}</td>
-                <td><button class='btn-delete' onclick="deleteExpense(${i});">Delete</button></td>
-            </tr>
-        `;
-    }
-}
-
-function displayItems() {
-    let containerElement = document.querySelector('.expense-list');
-    containerElement.innerHTML = '';  // Clear the current list before re-rendering
-
     for (let i = 0; i < expenseList.length; i++) {
         let { item, cost } = expenseList[i];
 
@@ -66,3 +47,20 @@ function displayItems() {
     }
 }
 
+function deleteExpense(index) {
+    // Remove the item from the expense list
+    let costToRemove = expenseList[index].cost;
+    expenseList.splice(index, 1);  // Delete the item from the list
+
+    // Recalculate the total expenses after deletion
+    let newTotalExpense = expenseList.reduce((total, expense) => total + expense.cost, 0);
+    document.getElementById('ex').innerHTML = newTotalExpense;
+
+    // Update the remaining balance after deletion
+    let totalBalance = budgetSet();
+    let avlBalance = totalBalance - newTotalExpense;
+    document.getElementById('amt').innerHTML = avlBalance;
+
+    // Re-display the updated expense list
+    displayItems();
+}
